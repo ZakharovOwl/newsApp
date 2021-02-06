@@ -56,16 +56,15 @@ const Trends = ({ name, setName, loginStatus, setLoginStatus }) => {
         ></textarea>
         <button /* className="form-tweet-btn" */>Sign in</button>
       </form>
-      <div>
-        <div className={`user ${!loginStatus ? "user-active" : ""}`}>
+      <div className={`user ${!loginStatus ? "user-active" : ""}`}>
           <div className="user-name">
-            <p>{name}</p>
+            <p className="text-user">User:</p>
+            <p className="text-user-name">{name}</p>
           </div>
           <div onClick={bntOut} className="user-btn-out">
-            Out
+            Exit
           </div>
         </div>
-      </div>
     </div>
     /*  <div className='trends-wrapper'>
       <h4>Trends for you (block doesn't work)</h4>
