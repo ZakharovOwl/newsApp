@@ -20,6 +20,8 @@ const MyTweets = ({
   setTweetsFilter,
   loginStatus,
   setLoginStatus,
+  textUsersInputFilter,
+  setTextUsersInputFilter,
 }) => {
   return (
     <div className="tweets-wrapper">
@@ -48,6 +50,8 @@ const MyTweets = ({
       <FilterTweets
         textInputFilter={textInputFilter}
         setTextInputFilter={setTextInputFilter}
+        textUsersInputFilter={textUsersInputFilter}
+        setTextUsersInputFilter={setTextUsersInputFilter}
         tweets={tweets}
         setTweets={setTweets}
         tweetsFilter={tweetsFilter}

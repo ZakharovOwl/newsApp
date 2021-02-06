@@ -1,6 +1,11 @@
 import React, { useState } from "react";
 
-const Trends = ({ name, setName, loginStatus, setLoginStatus }) => {
+const Trends = ({
+  name,
+  setName,
+  loginStatus,
+  setLoginStatus,
+}) => {
   const [firstName, setFirstName] = useState("");
   const [lastName, setLastName] = useState("");
 
@@ -21,7 +26,7 @@ const Trends = ({ name, setName, loginStatus, setLoginStatus }) => {
         JSON.stringify([`${firstName} ${lastName}`, loginStatus])
       );
     } else {
-      alert(`Введите First name и Last name`)
+      alert(`Введите First name и Last name (более 2 символов каждое)`);
     }
   };
 
@@ -29,6 +34,10 @@ const Trends = ({ name, setName, loginStatus, setLoginStatus }) => {
     e.preventDefault();
     setName(``);
     setLoginStatus(!loginStatus);
+    localStorage.setItem(
+      `dataName`,
+      JSON.stringify([`${firstName} ${lastName}`, loginStatus])
+    );
   };
 
   return (
