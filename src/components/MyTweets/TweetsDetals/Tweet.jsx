@@ -13,6 +13,7 @@ const Tweet = ({
   // const [tweet, setTweet] = useState(`${tweet}`);
   //functions
 
+  
   const deleteTweet = () => {
     //LOCAL
     let dataTwts = data;

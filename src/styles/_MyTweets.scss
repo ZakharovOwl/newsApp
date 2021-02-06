@@ -87,6 +87,7 @@
   grid-area: tweets;
   background-color: #16202a;
   border-radius: 15px;
+  overflow: scroll;
 }
 .filter-tweets-wrapper {
   grid-area: filter;
@@ -115,7 +116,10 @@
     border: none;
     outline: none;
   }
+  
 }
+
+
 
 .trends-wrapper {
   grid-area: trends;
@@ -199,4 +203,22 @@
       }
     }
   }
+}
+
+
+//scroll
+* {
+  scrollbar-width: thin;
+  scrollbar-color:#1a8dc2 transparent;
+}
+*::-webkit-scrollbar {
+  width: 5px;
+}
+*::-webkit-scrollbar-track {
+  background: transparent;
+}
+*::-webkit-scrollbar-thumb {
+  background-color:#1a8dc2;
+  border-radius: 20px;
+  border: transparent;
 }

@@ -1,7 +1,45 @@
 .trends-wrapper {
   display: flex;
   flex-direction: column;
-  align-items: flex-end;
+  align-items: center;
+  form {
+    background: #1a8dc2;
+    border-radius: 15px;
+    height: 21vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    h3{
+      color: #ffffffa8;
+      margin-top: 10px;
+      margin-bottom: 10px;
+    }
+    .textarea-login {
+      background-color: #ffffff;
+      color: #244763;
+      padding: 10px;
+      width: 80%;
+      height: 36px;
+      border-radius: 36px;
+      border: none;
+      outline: none;
+    }
+    button{
+      all: initial;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      margin-top: 10px;
+      height: 30px;
+      width: 50%;
+      color: #18181b;
+      background: linear-gradient(to right, #fdfdfd, #8984dc);
+      border-radius: 7px;
+      cursor: pointer;
+      font-size: 18px;
+    }
+  }
   h3,
   h4 {
     margin-right: 20px;
@@ -9,5 +47,32 @@
   p {
     color: grey;
     margin-right: 20px;
+  }
+  .user-btn-out{
+    all:initial;
+    background-color: black;
+  }
+  
+  .login-form {
+    overflow: hidden;
+    opacity: 0;
+    transform: translateX(-100%);
+    transition: all 0.5s ease;
+  }
+  .login-form-active {
+    transform: translateX(0%);
+    opacity: 1;
+  }
+
+  .user {
+    overflow: hidden;
+    opacity: 0;
+    transform: translateX(-100%);
+    transition: all 0.5s ease;
+  }
+
+  .user-active {
+    transform: translateX(0%);
+    opacity: 1;
   }
 }

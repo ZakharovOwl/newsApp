@@ -17,7 +17,7 @@ const TweetList = ({
         <Tweet
           data={data}
           setData={setData}
-          name={name}
+          name={tweet.name}
           tweet={tweet}
           setTweets={setTweets}
           tweets={tweets}

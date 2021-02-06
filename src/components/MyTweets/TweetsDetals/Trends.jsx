@@ -1,8 +1,73 @@
-import React from "react";
+import React, { useState } from "react";
 
-const Trends= () => {
+const Trends = ({ name, setName, loginStatus, setLoginStatus }) => {
+  const [firstName, setFirstName] = useState("");
+  const [lastName, setLastName] = useState("");
+
+  const firstNameUserInputHandler = (e) => {
+    setFirstName(e.target.value);
+  };
+  const lastNameUserInputHandler = (e) => {
+    setLastName(e.target.value);
+  };
+
+  const sumbmitLogin = (e) => {
+    e.preventDefault();
+    setName(`${firstName} ${lastName}`);
+    setLoginStatus(!loginStatus);
+    localStorage.setItem(
+      `dataName`,
+      JSON.stringify([`${firstName} ${lastName}`, loginStatus])
+    );
+  };
+
+  const bntOut = (e) => {
+    e.preventDefault();
+    setName(``);
+    setLoginStatus(!loginStatus);
+  };
+
   return (
-    <div className='trends-wrapper'>
+    <div className="trends-wrapper">
+      <h2>Login</h2>
+      <form
+        className={`login-form ${loginStatus ? "login-form-active" : ""}`}
+        // className="form-tweet"
+        onSubmit={sumbmitLogin}
+        // onKeyDown={(e) => sumbmitEnter(e)}
+      >
+        <h3>First name</h3>
+        <textarea
+          className="textarea-login"
+          // autoFocus={true}
+          // value={textInput}
+          onChange={firstNameUserInputHandler}
+          cols="50"
+          rows="5"
+        ></textarea>
+        <h3>Last name </h3>
+        <textarea
+          className="textarea-login"
+          // autoFocus={true}
+          // value={textInput}
+          onChange={lastNameUserInputHandler}
+          cols="50"
+          rows="5"
+        ></textarea>
+        <button /* className="form-tweet-btn" */>Sign in</button>
+      </form>
+      <div>
+        <div className={`user ${!loginStatus ? "user-active" : ""}`}>
+          <div className="user-name">
+            <p>{name}</p>
+          </div>
+          <div onClick={bntOut} className="user-btn-out">
+            Out
+          </div>
+        </div>
+      </div>
+    </div>
+    /*  <div className='trends-wrapper'>
       <h4>Trends for you (block doesn't work)</h4>
       <h3>info about app</h3>
       <p>create/edit/delete tweet</p>
@@ -10,7 +75,7 @@ const Trends= () => {
       <p>filter tweets in "search block"</p>
       <p>update posts list(older/newest)</p>
       <p>save posts with localStorage</p>
-    </div>
+    </div> */
   );
 };
 

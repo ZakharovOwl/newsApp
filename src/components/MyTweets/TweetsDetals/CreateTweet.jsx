@@ -23,33 +23,9 @@ const CreateTweet = ({
     e.preventDefault();
     let timeSubmit = new Date().toLocaleString();
 
-    //LOCAL
-    let dataTwts = data;
-    localStorage.setItem(
-      `dataTweets`,
-      JSON.stringify([
-        ...tweets,
-        {
-          message: textInput,
-          id: uuidv4(),
-          name: name,
-          timeSubmit: timeSubmit,
-        },
-      ])
-    );
-    dataTwts = localStorage.getItem("dataTweets");
-    dataTwts = JSON.parse(dataTwts);
-    console.log(dataTwts);
-    //LOCAl
-    setData([...dataTwts]);
-    setTweets([...dataTwts]);
-    setTweetsFilter([...dataTwts]);
-    setTextInput("");
-  };
-
-  const sumbmitEnter = (event) => {
-    let timeSubmit = new Date().toLocaleString();
-    if (event.keyCode === 13) {
+    // проверка введен ли логин
+    
+    if (name.length > 1) {
       //LOCAL
       let dataTwts = data;
       localStorage.setItem(
@@ -67,12 +43,49 @@ const CreateTweet = ({
       dataTwts = localStorage.getItem("dataTweets");
       dataTwts = JSON.parse(dataTwts);
       console.log(dataTwts);
-
       //LOCAl
       setData([...dataTwts]);
       setTweets([...dataTwts]);
       setTweetsFilter([...dataTwts]);
       setTextInput("");
+    } else {
+      alert(`Sign in, please`);
+    }
+  };
+
+  const sumbmitEnter = (event) => {
+    let timeSubmit = new Date().toLocaleString();
+
+    // проверка введен ли логин
+
+    if (event.keyCode === 13) {
+      if (name.length > 1) {
+        //LOCAL
+        let dataTwts = data;
+        localStorage.setItem(
+          `dataTweets`,
+          JSON.stringify([
+            ...tweets,
+            {
+              message: textInput,
+              id: uuidv4(),
+              name: name,
+              timeSubmit: timeSubmit,
+            },
+          ])
+        );
+        dataTwts = localStorage.getItem("dataTweets");
+        dataTwts = JSON.parse(dataTwts);
+        console.log(dataTwts);
+
+        //LOCAl
+        setData([...dataTwts]);
+        setTweets([...dataTwts]);
+        setTweetsFilter([...dataTwts]);
+        setTextInput("");
+      } else {
+        alert(`Sign in, please`);
+      }
     }
   };
 
@@ -104,7 +117,10 @@ const CreateTweet = ({
       </form>
       <div>
         <div onClick={olderPosts} className="update-btn">
-          <img src="https://img.icons8.com/nolan/2x/ffffff/align-right.png" alt="align-right"/>
+          <img
+            src="https://img.icons8.com/nolan/2x/ffffff/align-right.png"
+            alt="align-right"
+          />
         </div>
       </div>
     </div>

@@ -17,14 +17,19 @@ function App() {
   
   let dataTweets = localStorage.getItem("dataTweets");
   dataTweets = JSON.parse(dataTweets);
+  let dataName = localStorage.getItem("dataName");
+  dataName = JSON.parse(dataName);
 
+  console.log(dataName[0]);
 
-  const [name, setName] = useState("Tony Stark");
+  
+  const [loginStatus, setLoginStatus] = useState(true);
   const [textInput, setTextInput] = useState("What's happening?");
   const [data, setData] = useState(dataTweets || []);
   const [tweets, setTweets] = useState(data);
   const [textInputFilter, setTextInputFilter] = useState("");
   const [tweetsFilter, setTweetsFilter] = useState(data);
+  const [name, setName] = useState(dataName[0] || '');
 
   return (
     <BrowserRouter>
@@ -47,6 +52,8 @@ function App() {
                 setTextInputFilter={setTextInputFilter}
                 tweetsFilter={tweetsFilter}
                 setTweetsFilter={setTweetsFilter}
+                loginStatus = {loginStatus}
+                setLoginStatus = {setLoginStatus}
               />
             )}
           />
