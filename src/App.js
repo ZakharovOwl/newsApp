@@ -17,20 +17,21 @@ function App() {
   
   let dataTweets = localStorage.getItem("dataTweets");
   dataTweets = JSON.parse(dataTweets);
-  let dataName = localStorage.getItem("dataName");
-  dataName = JSON.parse(dataName);
+   let dataName = localStorage.getItem("dataName");
+   dataName = JSON.parse(dataName);
 
-  //console.log(dataName[1]);
+  //console.log(!dataName[1]);
+  //console.log(dataName[0]);
 
   
-  const [loginStatus, setLoginStatus] = useState(true);
+  const [loginStatus, setLoginStatus] = useState(!dataName[1]);
   const [textInput, setTextInput] = useState("What's happening?");
   const [data, setData] = useState(dataTweets || []);
   const [tweets, setTweets] = useState(data);
   const [textInputFilter, setTextInputFilter] = useState("");
   const [textUsersInputFilter, setTextUsersInputFilter] = useState("");
   const [tweetsFilter, setTweetsFilter] = useState(data);
-  const [name, setName] = useState('');
+  const [name, setName] = useState(dataName[0] || '');
 
   return (
     <BrowserRouter>

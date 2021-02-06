@@ -18,7 +18,7 @@ const Trends = ({
 
   const sumbmitLogin = (e) => {
     e.preventDefault();
-    if (firstName.length > 0 && lastName.length > 0) {
+    if (firstName.length > 1 && lastName.length > 1) {
       setName(`${firstName} ${lastName}`);
       setLoginStatus(!loginStatus);
       localStorage.setItem(

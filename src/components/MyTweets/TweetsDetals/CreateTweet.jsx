@@ -42,7 +42,7 @@ const CreateTweet = ({
       );
       dataTwts = localStorage.getItem("dataTweets");
       dataTwts = JSON.parse(dataTwts);
-      console.log(dataTwts);
+      //console.log(dataTwts);
       //LOCAl
       setData([...dataTwts]);
       setTweets([...dataTwts]);
