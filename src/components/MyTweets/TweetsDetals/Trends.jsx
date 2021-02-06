@@ -13,12 +13,16 @@ const Trends = ({ name, setName, loginStatus, setLoginStatus }) => {
 
   const sumbmitLogin = (e) => {
     e.preventDefault();
-    setName(`${firstName} ${lastName}`);
-    setLoginStatus(!loginStatus);
-    localStorage.setItem(
-      `dataName`,
-      JSON.stringify([`${firstName} ${lastName}`, loginStatus])
-    );
+    if (firstName.length > 0 && lastName.length > 0) {
+      setName(`${firstName} ${lastName}`);
+      setLoginStatus(!loginStatus);
+      localStorage.setItem(
+        `dataName`,
+        JSON.stringify([`${firstName} ${lastName}`, loginStatus])
+      );
+    } else {
+      alert(`Введите First name и Last name`)
+    }
   };
 
   const bntOut = (e) => {
@@ -29,13 +33,13 @@ const Trends = ({ name, setName, loginStatus, setLoginStatus }) => {
 
   return (
     <div className="trends-wrapper">
-      <h2>Login</h2>
       <form
         className={`login-form ${loginStatus ? "login-form-active" : ""}`}
         // className="form-tweet"
         onSubmit={sumbmitLogin}
         // onKeyDown={(e) => sumbmitEnter(e)}
       >
+        <h2>Login</h2>
         <h3>First name</h3>
         <textarea
           className="textarea-login"
@@ -57,14 +61,14 @@ const Trends = ({ name, setName, loginStatus, setLoginStatus }) => {
         <button /* className="form-tweet-btn" */>Sign in</button>
       </form>
       <div className={`user ${!loginStatus ? "user-active" : ""}`}>
-          <div className="user-name">
-            <p className="text-user">User:</p>
-            <p className="text-user-name">{name}</p>
-          </div>
-          <div onClick={bntOut} className="user-btn-out">
-            Exit
-          </div>
+        <div className="user-name">
+          <p className="text-user">User:</p>
+          <p className="text-user-name">{name}</p>
         </div>
+        <div onClick={bntOut} className="user-btn-out">
+          Exit
+        </div>
+      </div>
     </div>
     /*  <div className='trends-wrapper'>
       <h4>Trends for you (block doesn't work)</h4>
