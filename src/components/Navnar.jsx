@@ -11,7 +11,7 @@ const Navbar = () => {
       <ul>
         <li>
           <NavLink
-            to="/mytweets"
+            to="/newsApp"
             activeClassName="link_active"
             className="list__link"
           >

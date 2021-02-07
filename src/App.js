@@ -39,7 +39,7 @@ function App() {
         <Navbar />
         <div className="content">
           <Route
-            path="/mytweets"
+            path="/newsApp"
             render={() => (
               <MyTweets
                 data={data}
