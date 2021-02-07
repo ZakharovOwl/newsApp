@@ -14,27 +14,27 @@ import Home from "./components/Home/Home";
 import "./styles/App.scss";
 
 function App() {
-  
   let dataTweets = localStorage.getItem("dataTweets");
   dataTweets = JSON.parse(dataTweets);
-   let dataName = localStorage.getItem("dataName");
-   dataName = JSON.parse(dataName);
-
-  //console.log(!dataName[1]);
+  let dataName = localStorage.getItem("dataName");
+  dataName = JSON.parse(dataName);
+  
+  
+  //console.log(dataName);
+  //console.log(dataName[1]);
   //console.log(dataName[0]);
 
-  
-  const [loginStatus, setLoginStatus] = useState(!dataName[1]);
+  const [loginStatus, setLoginStatus] = useState(dataName === null ? true : !dataName[1]);
   const [textInput, setTextInput] = useState("What's happening?");
   const [data, setData] = useState(dataTweets || []);
   const [tweets, setTweets] = useState(data);
   const [textInputFilter, setTextInputFilter] = useState("");
   const [textUsersInputFilter, setTextUsersInputFilter] = useState("");
   const [tweetsFilter, setTweetsFilter] = useState(data);
-  const [name, setName] = useState(dataName[0] || '');
+  const [name, setName] = useState(dataName === null ? "" : dataName[0]);
 
   return (
-    <BrowserRouter>
+    <BrowserRouter basename="/newsApp">
       <div className="app-wrapper">
         <Navbar />
         <div className="content">
@@ -54,8 +54,8 @@ function App() {
                 setTextInputFilter={setTextInputFilter}
                 tweetsFilter={tweetsFilter}
                 setTweetsFilter={setTweetsFilter}
-                loginStatus = {loginStatus}
-                setLoginStatus = {setLoginStatus}
+                loginStatus={loginStatus}
+                setLoginStatus={setLoginStatus}
                 textUsersInputFilter={textUsersInputFilter}
                 setTextUsersInputFilter={setTextUsersInputFilter}
               />
