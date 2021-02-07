@@ -34,7 +34,7 @@ function App() {
   const [name, setName] = useState(dataName === null ? "" : dataName[0]);
 
   return (
-    <BrowserRouter basename="/newsApp">
+    <BrowserRouter>
       <div className="app-wrapper">
         <Navbar />
         <div className="content">
