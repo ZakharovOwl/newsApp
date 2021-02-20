@@ -1,27 +1,81 @@
 import React, { useState } from "react";
 
-const Trends = ({ name, setName, loginStatus, setLoginStatus }) => {
+const Trends = ({
+  name,
+  setName,
+  loginStatus,
+  setLoginStatus,
+  users,
+  setUsers,
+}) => {
   const [firstName, setFirstName] = useState("");
-  const [lastName, setLastName] = useState("");
+  const [password, setPassword] = useState("");
 
   const firstNameUserInputHandler = (e) => {
     setFirstName(e.target.value);
   };
-  const lastNameUserInputHandler = (e) => {
-    setLastName(e.target.value);
+  const passwordUserInputHandler = (e) => {
+    setPassword(e.target.value);
   };
 
   const sumbmitLogin = (e) => {
     e.preventDefault();
-    if (firstName.length > 1 && lastName.length > 1) {
-      setName(`${firstName} ${lastName}`);
+    if (firstName.length > 1 && password.length > 1) {
+      setName(`${firstName}`);
       setLoginStatus(!loginStatus);
       localStorage.setItem(
         `dataName`,
-        JSON.stringify([`${firstName} ${lastName}`, loginStatus])
+        JSON.stringify([`${firstName}`, loginStatus])
       );
     } else {
-      alert(`Введите First name и Last name (более 2 символов каждое)`);
+      alert(`Введите First name и Password (более 2 символов каждое)`);
+    }
+  };
+
+  const sumbmitNewUser = (e) => {
+    e.preventDefault();
+    let a = {
+      user: firstName,
+      password: password,
+    };
+    let check;
+    const checkUsers = () => {
+      //users.filter((a) => a.user === firstName)
+      //var hasId = arr.some(o => o.id === 2);
+      check = users.some(o=>o.user === firstName) 
+    };
+    checkUsers();
+    console.log(` check   ${check}`);
+    if (firstName.length > 1 && password.length > 1) {
+      if (check === false) {
+        setName(`${firstName}`);
+        setUsers([
+          ...users,
+          {
+            user: firstName,
+            password: password,
+          },
+        ]);
+        setLoginStatus(!loginStatus);
+        localStorage.setItem(
+          `dataUsers`,
+          JSON.stringify([
+            ...users,
+            {
+              user: firstName,
+              password: password,
+            },
+          ])
+        );
+        localStorage.setItem(
+          `dataName`,
+          JSON.stringify([`${firstName}`, loginStatus])
+        );
+      } else if (check === true) {
+        alert(`Такой пользователь уже есть.`);
+      }
+    } else {
+      alert(`Введите First name и Password (более 2 символов каждое)`);
     }
   };
 
@@ -31,7 +85,7 @@ const Trends = ({ name, setName, loginStatus, setLoginStatus }) => {
     setLoginStatus(!loginStatus);
     localStorage.setItem(
       `dataName`,
-      JSON.stringify([`${firstName} ${lastName}`, loginStatus])
+      JSON.stringify([`${firstName} ${password}`, loginStatus])
     );
   };
 
@@ -46,7 +100,7 @@ const Trends = ({ name, setName, loginStatus, setLoginStatus }) => {
         // onKeyDown={(e) => sumbmitEnter(e)}
       >
         <h2>Login</h2>
-        <h3>First name</h3>
+        <h3>Name</h3>
         <textarea
           className="textarea-login"
           // autoFocus={true}
@@ -55,12 +109,12 @@ const Trends = ({ name, setName, loginStatus, setLoginStatus }) => {
           cols="50"
           rows="5"
         ></textarea>
-        <h3>Last name </h3>
+        <h3>Password </h3>
         <textarea
           className="textarea-login"
           // autoFocus={true}
           // value={textInput}
-          onChange={lastNameUserInputHandler}
+          onChange={passwordUserInputHandler}
           cols="50"
           rows="5"
         ></textarea>
@@ -68,7 +122,7 @@ const Trends = ({ name, setName, loginStatus, setLoginStatus }) => {
           <button onClick={sumbmitLogin} className="btn-singIn">
             Sign in
           </button>
-          <button /* className="form-tweet-btn" */>Create new acc</button>
+          <button onClick={sumbmitNewUser}>Create new acc</button>
         </div>
       </form>
       <div className={`user ${!loginStatus ? "user-active" : ""}`}>

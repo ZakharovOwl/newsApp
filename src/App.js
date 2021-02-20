@@ -18,9 +18,9 @@ function App() {
   dataTweets = JSON.parse(dataTweets);
   let dataName = localStorage.getItem("dataName");
   dataName = JSON.parse(dataName);
+  let dataUsers = localStorage.getItem("dataUsers");
+  dataUsers = JSON.parse(dataUsers);
   
-  
-  //console.log(dataName);
   //console.log(dataName[1]);
   //console.log(dataName[0]);
 
@@ -32,6 +32,7 @@ function App() {
   const [textUsersInputFilter, setTextUsersInputFilter] = useState("");
   const [tweetsFilter, setTweetsFilter] = useState(data);
   const [name, setName] = useState(dataName === null ? "" : dataName[0]);
+  const [users, setUsers] = useState(dataUsers === null ? [] : dataUsers);
 
   return (
     <BrowserRouter>
@@ -46,6 +47,8 @@ function App() {
                 setData={setData}
                 name={name}
                 setName={setName}
+                users={users}
+                setUsers={setUsers}
                 textInput={textInput}
                 setTextInput={setTextInput}
                 tweets={tweets}
