@@ -1,11 +1,6 @@
 import React, { useState } from "react";
 
-const Trends = ({
-  name,
-  setName,
-  loginStatus,
-  setLoginStatus,
-}) => {
+const Trends = ({ name, setName, loginStatus, setLoginStatus }) => {
   const [firstName, setFirstName] = useState("");
   const [lastName, setLastName] = useState("");
 
@@ -41,11 +36,13 @@ const Trends = ({
   };
 
   return (
-    <div className="trends-wrapper">
+    <div
+      className={`trends-wrapper ${loginStatus ? "trends-wrapper-active" : ""}`}
+    >
       <form
         className={`login-form ${loginStatus ? "login-form-active" : ""}`}
         // className="form-tweet"
-        onSubmit={sumbmitLogin}
+        //onSubmit={sumbmitLogin}
         // onKeyDown={(e) => sumbmitEnter(e)}
       >
         <h2>Login</h2>
@@ -67,7 +64,12 @@ const Trends = ({
           cols="50"
           rows="5"
         ></textarea>
-        <button /* className="form-tweet-btn" */>Sign in</button>
+        <div className="login-form-btns">
+          <button onClick={sumbmitLogin} className="btn-singIn">
+            Sign in
+          </button>
+          <button /* className="form-tweet-btn" */>Create new acc</button>
+        </div>
       </form>
       <div className={`user ${!loginStatus ? "user-active" : ""}`}>
         <div className="user-name">
