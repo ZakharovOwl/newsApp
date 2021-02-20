@@ -20,13 +20,25 @@ const Trends = ({
 
   const sumbmitLogin = (e) => {
     e.preventDefault();
-    if (firstName.length > 1 && password.length > 1) {
-      setName(`${firstName}`);
-      setLoginStatus(!loginStatus);
-      localStorage.setItem(
-        `dataName`,
-        JSON.stringify([`${firstName}`, loginStatus])
+    let check;
+    const checkUsers = () => {
+      check = users.some(
+        (o) => o.user === firstName && o.password === password
       );
+    };
+    checkUsers();
+
+    if (firstName.length > 1 && password.length > 1) {
+      if (check === true) {
+        setName(`${firstName}`);
+        setLoginStatus(!loginStatus);
+        localStorage.setItem(
+          `dataName`,
+          JSON.stringify([`${firstName}`, loginStatus])
+        );
+      } else if (check === !true) {
+        alert(`Пароль или логин введены неправильно, попробуйте еще раз.`);
+      }
     } else {
       alert(`Введите First name и Password (более 2 символов каждое)`);
     }
@@ -34,18 +46,11 @@ const Trends = ({
 
   const sumbmitNewUser = (e) => {
     e.preventDefault();
-    let a = {
-      user: firstName,
-      password: password,
-    };
     let check;
     const checkUsers = () => {
-      //users.filter((a) => a.user === firstName)
-      //var hasId = arr.some(o => o.id === 2);
-      check = users.some(o=>o.user === firstName) 
+      check = users.some((o) => o.user === firstName);
     };
     checkUsers();
-    console.log(` check   ${check}`);
     if (firstName.length > 1 && password.length > 1) {
       if (check === false) {
         setName(`${firstName}`);
@@ -78,7 +83,7 @@ const Trends = ({
       alert(`Введите First name и Password (более 2 символов каждое)`);
     }
   };
-
+  
   const bntOut = (e) => {
     e.preventDefault();
     setName(``);
@@ -95,9 +100,6 @@ const Trends = ({
     >
       <form
         className={`login-form ${loginStatus ? "login-form-active" : ""}`}
-        // className="form-tweet"
-        //onSubmit={sumbmitLogin}
-        // onKeyDown={(e) => sumbmitEnter(e)}
       >
         <h2>Login</h2>
         <h3>Name</h3>
@@ -119,7 +121,10 @@ const Trends = ({
           rows="5"
         ></textarea>
         <div className="login-form-btns">
-          <button onClick={sumbmitLogin} className="btn-singIn">
+          <button
+            onClick={sumbmitLogin}
+            className="btn-singIn"
+          >
             Sign in
           </button>
           <button onClick={sumbmitNewUser}>Create new acc</button>

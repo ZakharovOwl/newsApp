@@ -12,6 +12,7 @@ const CreateTweet = ({
   setTweets,
   tweetsFilter,
   setTweetsFilter,
+  loginStatus,
 }) => {
   //State
   //Functions
@@ -24,42 +25,9 @@ const CreateTweet = ({
     let timeSubmit = new Date().toLocaleString();
 
     // проверка введен ли логин
-    
+
     if (name.length > 1) {
-      //LOCAL
-      let dataTwts = data;
-      localStorage.setItem(
-        `dataTweets`,
-        JSON.stringify([
-          ...tweets,
-          {
-            message: textInput,
-            id: uuidv4(),
-            name: name,
-            timeSubmit: timeSubmit,
-          },
-        ])
-      );
-      dataTwts = localStorage.getItem("dataTweets");
-      dataTwts = JSON.parse(dataTwts);
-      //console.log(dataTwts);
-      //LOCAl
-      setData([...dataTwts]);
-      setTweets([...dataTwts]);
-      setTweetsFilter([...dataTwts]);
-      setTextInput("");
-    } else {
-      alert(`Sign in, please`);
-    }
-  };
-
-  const sumbmitEnter = (event) => {
-    let timeSubmit = new Date().toLocaleString();
-
-    // проверка введен ли логин
-
-    if (event.keyCode === 13) {
-      if (name.length > 1) {
+      if (textInput.length > 1) {
         //LOCAL
         let dataTwts = data;
         localStorage.setItem(
@@ -76,13 +44,55 @@ const CreateTweet = ({
         );
         dataTwts = localStorage.getItem("dataTweets");
         dataTwts = JSON.parse(dataTwts);
-        console.log(dataTwts);
-
+        //console.log(dataTwts);
         //LOCAl
         setData([...dataTwts]);
         setTweets([...dataTwts]);
         setTweetsFilter([...dataTwts]);
         setTextInput("");
+      } else if (textInput.length < 1) {
+        alert(`Сreate a message, please`);
+      }
+    } else {
+      alert(`Sign in, please`);
+    }
+  };
+
+  const sumbmitEnter = (event) => {
+    let timeSubmit = new Date().toLocaleString();
+
+    // проверка введен ли логин
+
+    if (event.keyCode === 13 && loginStatus === false) {
+      if (name.length > 1) {
+        if (textInput.length > 1) {
+          //LOCAL
+
+          let dataTwts = data;
+          localStorage.setItem(
+            `dataTweets`,
+            JSON.stringify([
+              ...tweets,
+              {
+                message: textInput,
+                id: uuidv4(),
+                name: name,
+                timeSubmit: timeSubmit,
+              },
+            ])
+          );
+          dataTwts = localStorage.getItem("dataTweets");
+          dataTwts = JSON.parse(dataTwts);
+          //console.log(dataTwts);
+
+          //LOCAl
+          setData([...dataTwts]);
+          setTweets([...dataTwts]);
+          setTweetsFilter([...dataTwts]);
+          setTextInput("");
+        } else if (textInput.length < 1) {
+          alert(`Сreate a message, please`);
+        }
       } else {
         alert(`Sign in, please`);
       }

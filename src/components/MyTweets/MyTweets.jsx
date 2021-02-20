@@ -40,6 +40,8 @@ const MyTweets = ({
         setTweets={setTweets}
         tweetsFilter={tweetsFilter}
         setTweetsFilter={setTweetsFilter}
+        loginStatus={loginStatus}
+        setLoginStatus={setLoginStatus}
       />
       <TweetList
         data={data}
