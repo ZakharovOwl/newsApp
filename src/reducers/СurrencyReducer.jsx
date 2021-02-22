@@ -5,7 +5,7 @@ const initState = {
 const currencyReducer = (state = initState, action) => {
   switch (action.type) {
     case "currency_value":
-      return { ...state };
+      return { ...state, currencyAll: action.payload.currency  };
     default:
       return { ...state };
   }

@@ -1,5 +1,9 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { BrowserRouter, Route} from "react-router-dom";
+
+//redux
+import {useDispatch, useSelector} from "react-redux";
+import { loadCurrency } from "./actions/currencyAction";
 
 //components
 import Finance from "./components/Finance/Finance";
@@ -7,13 +11,19 @@ import NewsHabr from "./components/Habr/NewsHabr";
 import MyTweets from "./components/MyTweets/MyTweets";
 import Navbar from "./components/Navnar";
 import NewsTutby from "./components/NewsTutBy/NewsTutby";
-import Home from "./components/Home/Home";
 //import dataTweets from "./dataTweets";
 
 //styles
 import "./styles/App.scss";
 
+
 function App() {
+  const dispatch = useDispatch();
+  useEffect(()=>{
+    dispatch(loadCurrency())
+  })
+
+
   let dataTweets = localStorage.getItem("dataTweets");
   dataTweets = JSON.parse(dataTweets);
   let dataName = localStorage.getItem("dataName");
@@ -64,7 +74,6 @@ function App() {
               />
             )}
           />
-          <Route path="/home" render={() => <Home />} />
           <Route path="/newstutby" render={() => <NewsTutby />} />
           <Route path="/newshabr" render={() => <NewsHabr />} />
           <Route path="/finance" render={() => <Finance />} />
