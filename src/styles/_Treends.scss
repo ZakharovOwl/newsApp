@@ -120,12 +120,14 @@
     transition: all 0.5s ease;
     border: 1px solid #00ec86c2;
     border-radius: 10px;
+    width: 95%;
 
     .user-name {
       margin: 10px;
       display: flex;
       flex-direction: column;
       justify-content: center;
+      width: 100%;
 
       .text-user {
         color: #ffffffc7;
