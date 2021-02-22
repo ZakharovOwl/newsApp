@@ -19,31 +19,13 @@ const Navbar = () => {
           </NavLink>
         </li>
         <li>
-          <NavLink
-            to="/home"
-            activeClassName="link_active"
+          <a
+            //activeClassName="link_active"
             className="list__link"
-          >
-            Home
-          </NavLink>
-        </li>
-        <li>
-          <NavLink
-            to="/newstutby"
-            activeClassName="link_active"
-            className="list__link"
+            href="https://zakharovowl.github.io/rsstut/"
           >
             TUT.by
-          </NavLink>
-        </li>
-        <li>
-          <NavLink
-            to="/newshabr"
-            activeClassName="link_active"
-            className="list__link"
-          >
-            Habr
-          </NavLink>
+          </a>
         </li>
         <li>
           <NavLink

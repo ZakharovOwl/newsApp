@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { BrowserRouter, Route } from "react-router-dom";
+import { BrowserRouter, Route} from "react-router-dom";
 
 //components
 import Finance from "./components/Finance/Finance";
