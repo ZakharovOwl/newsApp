@@ -11,15 +11,19 @@ const Finance = () => {
     dispatch(loadCurrency());
   }, [dispatch]);
   const currency = useSelector((state) => state.currency.currencyAll.data);
+  
   let trueCurrency;
-  const chechCurrency = () => {
-    if (currency === true) {
-      trueCurrency = currency;
+  console.log(currency);
+
+  const checkCurrency = () => {
+    if (currency === undefined) {
+      trueCurrency = СurrencyArr();
+      console.log("hi");
     } else {
-      trueCurrency = СurrencyArr()
+      trueCurrency = currency;
     }
   };
-  chechCurrency();
+  checkCurrency();
 
   //console.log(currency);
 
