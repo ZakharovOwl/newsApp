@@ -1,9 +1,6 @@
-import React, { useState, useEffect } from "react";
+import React, { useState} from "react";
 import { BrowserRouter, Route} from "react-router-dom";
 
-//redux
-import {useDispatch, useSelector} from "react-redux";
-import { loadCurrency } from "./actions/currencyAction";
 
 //components
 import Finance from "./components/Finance/Finance";
@@ -18,10 +15,7 @@ import "./styles/App.scss";
 
 
 function App() {
-  const dispatch = useDispatch();
-  useEffect(()=>{
-    dispatch(loadCurrency())
-  })
+
 
 
   let dataTweets = localStorage.getItem("dataTweets");
